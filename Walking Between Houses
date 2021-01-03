@@ -1,0 +1,110 @@
+//CONTEST : Codeforces Round #501 (Div. 3)
+//PROBLEM : D. Walking Between Houses
+//PROBLEM LINK : https://codeforces.com/contest/1015/problem/D
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=3e5+5,modulo=1e9+7,inf=1e18,N=2001;
+int ar[no+10];//,br[no+10],mat[N][N];
+int deg[no],ans=0;
+
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n>>k>>a;
+    w=k*(n-1);
+    if(a<k || a>w) cout<<"NO"<<en;
+    else {
+        vi v;x=1;
+        while(a>k && k>0 && a>0) {
+            if(a<(n-1)) {
+                if(x==n) v.PB(x-a);
+                else if(x==1) v.PB(x+a);
+                a=0;
+            }
+            else {
+                a-=(n-1);
+                if(x==1) v.PB(n);
+                else if(x==n) v.PB(1);
+            }
+            k--;
+            x=v.back();
+        }
+        cout<<"YES"<<en;
+        if(!k) {
+            for(int i : v) cout<<i<<" ";
+        }
+        else {
+            if(a<k) {
+                if(x==1 || x==n) a+=(n-1);
+                else if(v.size()==1) a+=(x-1);
+                else {
+                    a+=abs(v[v.size()-2]-v.back());
+                }
+                v.pop_back();
+                if(v.size()>0) x=v.back();
+                else x=1;
+                if(x==1) v.PB(x+a-k);
+                else if(x==n) v.PB(x-(a-k));
+                a=k;x=v.back();
+            }
+            for(int i : v) cout<<i<<" ";
+            if(a==k) {
+                while(k--) {
+                    if(x==n) {cout<<n-1<<" "; x=n-1 ; }
+                    else if(x==n-1) {cout<<n<<" "; x=n ;}
+                    else if(x==1) {cout<<2<<" "; x=2 ;}
+                    else if(x==2) {cout<<1<<" "; x=1 ;}
+                    else cout<<--x<<" ";
+                }
+            }
+        }
+    }
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+}
