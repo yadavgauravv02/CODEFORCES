@@ -1,0 +1,87 @@
+//CONTEST : Educational Codeforces Round 58 (Rated for Div. 2)
+//PROBLEM : C. Division and Union
+//PROBLEM LINK : https://codeforces.com/contest/1101/problem/C
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no],br[no],mat[N][N];
+//int ans=0,used[no];
+//vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int lcm(int x, int y) { return (x*y)/__gcd(x,y);}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n;
+    vector<pair<int,pi>> v;
+    rep(i,0,n) {
+        cin>>x>>y;
+        v.PB({x,{y,i+1}});
+    }
+    sort(all(v));
+    x=0;
+    y=v[0].se.fi;
+    rep(i,1,n) {
+        if(v[i].fi>y) {
+            x=i;
+            break;
+        }
+        if(y<v[i].se.fi) y=v[i].se.fi;
+    }
+    if(!x) {cout<<-1<<en; return ;}
+    x--;
+    rep(i,0,n) {
+        if(i<=x) ar[v[i].se.se-1]=1;
+        else ar[v[i].se.se-1]=2;
+    }
+    rep(i,0,n) cout<<ar[i]<<" ";
+    cout<<en;
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+}
