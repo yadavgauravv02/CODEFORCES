@@ -1,0 +1,101 @@
+//CONTEST : Educational Codeforces Round 102 (Rated for Div. 2)
+//PROBLEM : B. String LCM
+//PROBLEM LINK : https://codeforces.com/contest/1473/problem/B
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no],br[no],mat[N][N];
+//int ans=0,used[no];
+//vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int lcm(int x, int y) { return (x*y)/__gcd(x,y);}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,x=0,y=0,z=0,w=0,k=0;
+    string s1,s2;
+    cin>>s1>>s2;
+    string sss;
+    if(s1.size()>s2.size()) swap(s1,s2);
+    int ok=0;
+    rep(i,0,s1.size()) {
+        string s="";
+        ok=0;
+        int xx=s1.size(),yy=s2.size();
+        rep(j,0,i+1) s+=s1[j];
+        int zz=s.size();
+        if(xx%zz || yy%zz) ok=1;
+        if(ok) continue;
+        for(int j=0 ; j<s1.size() ; j+=i+1) {
+            string ss="";
+            rep(k,j,j+i+1) {
+                ss+=s1[k];
+            }
+            if(ss!=s) {ok=1; break;}
+        }
+        if(ok) continue;
+        for(int j=0 ; j<s2.size() ; j+=i+1) {
+            string ss="";
+            rep(k,j,j+i+1) {
+                ss+=s2[k];
+            }
+            if(ss!=s) {ok=1 ;break;}
+        }
+        if(ok) continue;
+        a=s1.size()/s.size();
+        b=s2.size()/s.size();
+        sss=s;
+        break;
+    }
+    if(ok) {cout<<-1<<en; return ;}
+    k=lcm(a,b);
+    rep(i,0,k) cout<<sss;
+    cout<<en;
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+}
