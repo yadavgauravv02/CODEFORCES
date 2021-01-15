@@ -1,0 +1,96 @@
+//CONTEST : Divide by Zero 2017 and Codeforces Round #399 (Div. 1 + Div. 2, combined)
+//PROBLEM : B. Code For 1
+//PROBLEM LINK : https://codeforces.com/contest/768/problem/B
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no],br[no];//,mat[N][N];
+int ans=0,used[no];
+vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int poww(int x, int y) {
+    int res=1;
+    while (y) {
+        if (y & 1){
+            y--;
+            res=res*x;
+        } else {
+            y/=2;
+            x=x*x;
+        }
+    }
+    return res;
+}
+
+map<int,int> bits;
+int len(int n) {
+    int x=1;
+    while (n>0) {
+        int k=log2(n);
+        k=poww(2,k);
+        bits[k]=n%2;
+        n/=2;
+        x*=2;
+    }
+    return x;
+}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n>>a>>b;
+    m=2*len(n)-1;
+    rep(i,a,b+1) {
+        x=__builtin_ctz(i);
+        x=poww(2,x);
+        if(bits[x]==1) z++;
+    }
+    cout<<z;
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	//cin>>t;
+	while(t--){
+		solve();
+	}
+}
