@@ -1,0 +1,85 @@
+//CONTEST : Codeforces Round #451 (Div. 2)
+//PROBLEM : E. Squares and not squares
+//PROBLEM LINK : https://codeforces.com/contest/898/problem/E
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no],br[no],mat[N][N];
+//int ans=0,used[no];
+//vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n;
+    rep(i,0,n) cin>>ar[i];
+    vi v;
+    rep(i,0,n) {
+        x=sqrt(ar[i]);
+        if(x*x==ar[i]) v.PB(0);
+        else v.PB(min(ar[i]-x*x,(x+1)*(x+1)-ar[i]));
+    }
+    sort(all(v));
+    sort(ar,ar+n);
+    x=n/2;
+    rep(i,0,n) {
+        if(v[i]==0) x--;
+        else if(v[i]>0 && x>0) y+=v[i], x--;
+    }
+    if(x<0) {
+        x=-x;
+        rep(i,n/2,n) {
+            if(ar[i]==0 && x>0) y+=2 , x--;
+            else if(ar[i]>0 && x>0) y++ , x--;
+        }
+    }
+    cout<<y<<en;
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	//cin>>t;
+	rep(i,1,t+1) {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+}
