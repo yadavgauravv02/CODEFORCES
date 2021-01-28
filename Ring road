@@ -1,0 +1,92 @@
+//CONTEST : Codeforces Beta Round #24
+//PROBLEM : A. Ring road
+//PROBLEM LINK : https://codeforces.com/contest/24/problem/A
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+//int ar[no],br[no],cr[no];//,mat[N][N];
+int used[no];
+//pii ad[no];
+vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int mat[N][N];
+vi v;
+
+void dfs(int node) {
+    used[node]=1;
+    v.PB(node);
+    for(int child : adj[node]) {
+        if(!used[child]) {
+            dfs(child);
+        }
+    }
+}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n;
+    rep(i,0,n) {
+        cin>>x>>y>>z;
+        w+=z;
+        mat[x][y]=z;
+        adj[x].PB(y);
+        adj[y].PB(x);
+    }
+    dfs(1);
+    v.PB(1);
+    x=0;
+    rep(i,1,v.size()) {
+        if(!mat[v[i-1]][v[i]]) x+=mat[v[i]][v[i-1]];
+    }
+    cout<<min(x,w-x);
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	//cin>>t;
+	rep(i,1,t+1) {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+}
