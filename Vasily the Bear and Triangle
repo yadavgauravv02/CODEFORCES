@@ -1,0 +1,69 @@
+//CONTEST : Codeforces Round #195 (Div. 2)
+//PROBLEM : A. Vasily the Bear and Triangle
+//PROBLEM LINK : https://codeforces.com/contest/336/problem/A
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=3e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no],br[no];//,cr[no];//,mat[N][N];
+int used[no];
+//pii ad[no];
+//vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------4
+
+void solve () {
+    int n=0,m=0,a=0,b=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>x>>y;
+    if(x>0 && y>0) cout<<" 0 "<<x+y<<" "<<x+y<<" 0";
+    else if(x>0 && y<0)  cout<<" 0 "<<-abs(x)-abs(y)<<" "<<abs(x)+abs(y)<<" 0";
+    else if(x<0 && y>0) cout<<-abs(x)-abs(y)<<" 0 0 "<<abs(x)+abs(y);
+    else cout<<-abs(x)-abs(y)<<" 0 0 "<<-abs(x)-abs(y);
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	//cin>>t;
+	rep(i,1,t+1) {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+}
