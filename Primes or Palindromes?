@@ -1,0 +1,100 @@
+//CONTEST : Codeforces Round #315 (Div. 1)
+//PROBLEM : A. Primes or Palindromes?
+//PROBLEM LINK : https://codeforces.com/contest/568/problem/A
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=3e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+//int ar[no],br[no];//,cr[no];//,mat[N][N];
+//int used[no];
+//pii ad[no];
+//vi adj[no];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------4
+const int kk=1e7+5;
+int prime[kk],ar[kk];
+
+bool ckp(int n) {
+    string s=to_string(n);
+    string ss=s;
+    reverse(all(s));
+    if(ss!=s) return 0;
+    return 1;
+}
+
+void make_primes(int n) {
+    for(int i=2 ; i*i<n ; i++) {
+        if(!prime[i]) {
+            for(int j=i*i ; j<n ; j+=i) {
+                prime[j]=1;
+            }
+        }
+    }
+    rep(i,1,n) if(ckp(i)) ar[i]=1;
+    rep(i,2,n) prime[i]^=1 , prime[i]+=prime[i-1] , ar[i]+=ar[i-1];
+}
+
+int ck(int x , int y) {
+    int z=-1;
+    rep(i,1,kk) {
+        if(y*prime[i]<=x*ar[i]) z=i;
+    }
+    return z;
+}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,c=0,d=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>a>>b;
+    make_primes(kk);
+    x=ck(a,b);
+    if(x>0) cout<<x;
+    else cout<<"Palindromic tree is better than splay tree";
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	//cout<<fixed<<setprecision(15);
+	//cin>>t;
+	rep(i,1,t+1) {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+}
